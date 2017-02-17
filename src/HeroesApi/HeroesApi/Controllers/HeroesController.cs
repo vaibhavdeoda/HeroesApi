@@ -9,11 +9,9 @@ namespace HeroesApi.Controllers
 
     public class HeroesController : ApiController
     {
-        List<Hero> _list;
         private readonly IPersistHero _persistHero;
         public HeroesController(IPersistHero persistHero)
         {
-            _list = new List<Hero> { new Hero { Id = 1, Name = "Bombasta" }, new Hero { Id = 2, Name = "Superman" } };
             _persistHero = persistHero;
         }
 
