@@ -9,30 +9,32 @@ namespace HeroesApi.Controllers
 
     public class HeroesController : ApiController
     {
-        private List<Hero> _list;
-        public HeroesController()
+        List<Hero> _list;
+        private readonly IPersistHero _persistHero;
+        public HeroesController(IPersistHero persistHero)
         {
             _list = new List<Hero> { new Hero { Id = 1, Name = "Bombasta" }, new Hero { Id = 2, Name = "Superman" } };
+            _persistHero = persistHero;
         }
 
         public IEnumerable<Hero> GetAllHeroes()
         {
-            return _list;
+            return _persistHero.GetHeroes();
         }
 
         public Hero GetHero(int id)
         {
-            return _list.FirstOrDefault(x => x.Id == id);
+            return _persistHero.GetHeroById(id);
         }
 
         public void DeleteHero(int id)
         {
-           
+           _persistHero.DeleteHero(id);
         }
 
         public void PostHero([FromBody]PostHeroContract name)
         {
-            _list.Add(new Hero { Id = _list.Count() + 1, Name = name.HeroName});
+            _persistHero.SaveHero(name.HeroName);
         }
     }
 

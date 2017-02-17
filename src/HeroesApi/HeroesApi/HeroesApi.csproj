@@ -119,6 +119,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Hero.cs" />
+    <Compile Include="Models\InMemoryPersistHero.cs" />
+    <Compile Include="Models\IPersistHero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
